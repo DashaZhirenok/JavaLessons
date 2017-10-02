@@ -4,47 +4,68 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Duska on 02.10.2017.
  */
 public class AmountOfSymbols {
 
-    //private static final Path sPath = Paths.get("D:\\Project\\JavaLesson");
-    private static final String sPath2 = "D:\\Project\\JavaLesson\\src\\task5\\OpenZip.java";
+    private static final Path sPath = Paths.get("D:\\Project\\JavaLesson");
 
     public static void main(String[] args) throws IOException {
         AmountOfSymbols amountOfSymbols = new AmountOfSymbols();
+        List<String> list;
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Please, enter symbols or part of line");
 
-        System.out.println("Amount of symbols or part of line: " + amountOfSymbols.myCountInFile(reader.readLine(), sPath2));
+        list = amountOfSymbols.listWithFiles(sPath);
+
+        System.out.println("The number of repetitions in all files: " + amountOfSymbols.myCountInFile(reader.readLine(), list));
     }
 
-    /*private long myCount(String symbol, Path sPath) throws IOException {
-        long count = Files.walk(sPath)
+    /**
+     * This method returns List with all files in directory
+     * @param sPath
+     * @return
+     * @throws IOException
+     */
+
+    private List listWithFiles(Path sPath) throws IOException {
+
+        List<String> list = Files.walk(sPath.toAbsolutePath())
                 .map(s->s.toString())
-                .filter((s) -> s.contains(symbol))
-                .count();
-        return count;
-    }
-*/
-    private int myCountInFile(String symbol, String sPath) throws FileNotFoundException {
-        int count = 0;
-        File file = new File(sPath);
+                .filter((s)->(s.contains(".")&&!s.contains(".git")&&!s.contains(".idea")))
+                .collect(Collectors.toList());
 
-        try {
-            BufferedReader fin = new BufferedReader(new FileReader(file.getAbsoluteFile()));
-            String tmp;
-            while ( (tmp = fin.readLine()) != null ){
-                  if(tmp.contains(symbol))
-                      count++;
+        return list;
+    }
+
+    private int myCountInFile(String symbol, List<String> list) throws FileNotFoundException {
+        int count = 0;
+
+        /**
+         * loop for counting all symbols in all files
+         */
+
+        for (int i=0; i<list.size(); i++){
+            File file = new File(list.get(i));
+
+            try {
+                BufferedReader fin = new BufferedReader(new FileReader(file.getAbsoluteFile()));
+                String tmp;
+
+                //reading data from current file and counting
+                while ( (tmp = fin.readLine()) != null ){
+                    if(tmp.contains(symbol))
+                        count++;
+                }
+            }
+            catch (Exception e){
+                System.err.println(e);
             }
         }
-        catch (Exception e){
-            System.err.println(e);
-        }
-
 
         return count;
     }

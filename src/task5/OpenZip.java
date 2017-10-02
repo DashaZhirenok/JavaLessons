@@ -23,10 +23,10 @@ public class OpenZip {
 
     public static void main(String[] args) throws IOException {
         OpenZip openZip = new OpenZip();
-       // openZip.unZIP(FOLDER_PATH, ZIP_PATH);
+        openZip.unZIP(FOLDER_PATH, ZIP_PATH);
 
-        //openZip.findFiles(TRANSIENT_);
-        //openZip.findFiles(VOLATILE_);
+        openZip.findFiles(TRANSIENT_);
+        openZip.findFiles(VOLATILE_);
 
     }
 
