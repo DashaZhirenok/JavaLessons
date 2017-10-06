@@ -12,7 +12,8 @@ import java.util.stream.Collectors;
  */
 public class AmountOfSymbols {
 
-    private static final Path sPath = Paths.get("D:\\Project\\JavaLesson");
+    private static final Path sPathOfDirectory = Paths.get("D:\\Project\\JavaLesson");
+    private static final Path sPathOfFile = Paths.get("D:\\Project\\JavaLesson\\src\\task6\\AmountOfSymbols.java");
 
     public static void main(String[] args) throws IOException {
         AmountOfSymbols amountOfSymbols = new AmountOfSymbols();
@@ -20,8 +21,7 @@ public class AmountOfSymbols {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Please, enter symbols or part of line");
 
-        list = amountOfSymbols.listWithFiles(sPath);
-
+        list = amountOfSymbols.listWithFiles(sPathOfDirectory);
         System.out.println("The number of repetitions in all files: " + amountOfSymbols.myCountInFile(reader.readLine(), list));
     }
 

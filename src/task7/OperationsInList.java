@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by Duska on 02.10.2017.
@@ -14,17 +15,18 @@ public class OperationsInList{
     public static void main(String[] args) throws FileNotFoundException {
 
         OperationsInList operationsInList = new OperationsInList();
-        ArrayList<String> newArray = new ArrayList<>();
-        newArray = operationsInList.readFromFileAndWriteInList(S_PATH);
 
-        System.out.println(newArray);
+        operationsInList.readFromFileAndWriteInList(S_PATH, 7);
 
     }
 
-    private static ArrayList readFromFileAndWriteInList(String sPath) throws FileNotFoundException {
+
+    private static void readFromFileAndWriteInList(String sPath, int amountOfRows) throws FileNotFoundException {
 
         File file = new File(sPath);
         ArrayList<String> tmpArray = new ArrayList<>();
+
+        //добавить подсчет строк -> нединамическое выделение памяти
 
         try{
             BufferedReader fin = new BufferedReader(new FileReader(file.getAbsoluteFile()));
@@ -36,9 +38,16 @@ public class OperationsInList{
 
         }
         catch (Exception e){
-
+            System.err.println(e);
         }
 
-        return tmpArray;
+        Random rand = new Random();
+        int num;
+
+        for(int i=0; i<amountOfRows; i++){
+            num = rand.nextInt(tmpArray.size());
+            System.out.println("1. The line number is " + num + ". Line: " + tmpArray.get(num));
+        }
+
     }
 }
