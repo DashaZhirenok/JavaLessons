@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -20,7 +21,12 @@ public class OperationsInList{
 
     }
 
-
+    /**
+     * This method reads lines from file(sPath) and them calls method randomLines
+     * @param sPath
+     * @param amountOfRows
+     * @throws FileNotFoundException
+     */
     private static void readFromFileAndWriteInList(String sPath, int amountOfRows) throws FileNotFoundException {
 
         File file = new File(sPath);
@@ -28,6 +34,7 @@ public class OperationsInList{
 
         //добавить подсчет строк -> нединамическое выделение памяти
 
+        //to read data from file and put into List
         try{
             BufferedReader fin = new BufferedReader(new FileReader(file.getAbsoluteFile()));
             String tmp = "";
@@ -41,13 +48,22 @@ public class OperationsInList{
             System.err.println(e);
         }
 
+        randomLines(tmpArray, amountOfRows);
+    }
+
+    /**
+     * This method generate random lines from current file
+     * @param listWithLinesFromFile
+     * @param amountOfRows
+     */
+
+    public static void randomLines(List<String> listWithLinesFromFile, int amountOfRows){
         Random rand = new Random();
         int num;
 
         for(int i=0; i<amountOfRows; i++){
-            num = rand.nextInt(tmpArray.size());
-            System.out.println("1. The line number is " + num + ". Line: " + tmpArray.get(num));
+            num = rand.nextInt(listWithLinesFromFile.size());
+            System.out.println("1. The line number is " + num + ". Line: " + listWithLinesFromFile.get(num));
         }
-
     }
 }

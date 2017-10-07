@@ -30,6 +30,12 @@ public class GratestCommonDivisor {
         System.out.println("1. Наибольший общий делитель, используя 'Math.IEEEremainder': " + myRest);
     }
 
+    /**
+     * gsd with " % "
+     * @param first
+     * @param second
+     * @return
+     */
     public static int gcd_1(int first, int second){
 
         int rest=0;
@@ -44,6 +50,12 @@ public class GratestCommonDivisor {
         return gcd_1(second,rest);
     }
 
+    /**
+     * gsd with " floorMod "
+     * @param first
+     * @param second
+     * @return
+     */
     public static int gcd_2(int first, int second){
 
         int rest=0;
@@ -57,6 +69,12 @@ public class GratestCommonDivisor {
         return gcd_2(second, rest);
     }
 
+    /**
+     * gsd with " Rem "
+     * @param first
+     * @param second
+     * @return
+     */
     public static int gcd_3(int first, int second){
 
         int rest =0;

@@ -26,6 +26,11 @@ public class Rot13 {
 
     }
 
+    /**
+     * This method decode and encode current line
+     * @param encodeLine
+     * @return
+     */
     public static String rot13(String encodeLine){
         String line = "";
         for (int i = 0; i < encodeLine.length(); i++) {
