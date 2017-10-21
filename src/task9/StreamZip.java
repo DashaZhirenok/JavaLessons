@@ -47,6 +47,9 @@ public class StreamZip {
 
         else sizeOfList = n2;
 
+        //filter, iterator streamConcat
+        //gitInit, rebase, fetch
+
         //writing elements from two lists to one list
         for(int i=0; i<sizeOfList; i++){
             newList.add(listFirst.get(i));

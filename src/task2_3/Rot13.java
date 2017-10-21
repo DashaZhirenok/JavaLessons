@@ -22,7 +22,12 @@ public class Rot13 {
         System.out.println(rot13(decodedLine));
 
         //перевод из 16-ричной в 10
-        System.out.println(Integer.parseInt("478", 16));
+        try{
+            System.out.println(Integer.parseInt("478", 16));
+        }
+        catch (Exception e){
+            System.err.println(e);
+        }
 
     }
 

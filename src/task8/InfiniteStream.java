@@ -12,8 +12,9 @@ public class InfiniteStream {
         //2^48 - много для данной задачи, возьмем 2^12
         Long m =(long) Math.pow(2, 12);
 
+
         //сгенерируем псевдослучайные числа и установим лимит на кол-во - 35
-        myRandom(1, 25214903917L, 11, m)
+        myRandom(0, 25214903917L, 11, m)
                 .limit(35)
                 .forEach(System.out::println);
     }

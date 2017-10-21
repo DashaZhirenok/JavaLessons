@@ -15,11 +15,11 @@ import java.util.zip.ZipInputStream;
  * Created by Duska on 27.09.2017.
  */
 public class OpenZip {
-    private static final Path ZIP_ARCHIVE = Paths.get("D:\\Project\\src");
+    private static final Path ZIP_ARCHIVE = Paths.get("D:\\Project\\JavaLesson\\zip\\src");
     private static final String TRANSIENT_ = "transient";
     private static final String VOLATILE_ = "volatile";
-    private static final String ZIP_PATH = "D:\\Project\\src\\src.zip";
-    private static final String FOLDER_PATH = "D:\\Project\\src";
+    private static final String ZIP_PATH = "D:\\Project\\JavaLesson\\zip\\src.zip";
+    private static final String FOLDER_PATH = "D:\\Project\\JavaLesson\\zip\\src";
 
     public static void main(String[] args) throws IOException {
         OpenZip openZip = new OpenZip();
@@ -27,7 +27,7 @@ public class OpenZip {
         List<String> tmpList = new ArrayList<>();
         //openZip.unZIP(FOLDER_PATH, ZIP_PATH);
 
-       // openZip.findFilesWithFileName(TRANSIENT_);
+        //openZip.findFilesWithFileName(TRANSIENT_);
         //openZip.findFilesWithFileName(VOLATILE_);
 
         list = openZip.listWithFiles(ZIP_ARCHIVE);
@@ -175,7 +175,9 @@ public class OpenZip {
         for(String iterator: list){
             System.out.println(iterator);
         }
-        System.out.println("------------------------------------");
+        System.out.println("---------------------------------------------------------------------------");
+        System.out.println("");
+        System.out.println("---------------------------------------------------------------------------");
     }
 
 

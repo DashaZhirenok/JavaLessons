@@ -30,9 +30,10 @@ public class OperationsInList{
     private static void readFromFileAndWriteInList(String sPath, int amountOfRows) throws FileNotFoundException {
 
         File file = new File(sPath);
-        ArrayList<String> tmpArray = new ArrayList<>();
+        long len = file.length();
+        int sizeList = (int) (len/30);
 
-        //добавить подсчет строк -> нединамическое выделение памяти
+        ArrayList<String> tmpArray = new ArrayList<>(sizeList);
 
         //to read data from file and put into List
         try{
@@ -60,10 +61,12 @@ public class OperationsInList{
     public static void randomLines(List<String> listWithLinesFromFile, int amountOfRows){
         Random rand = new Random();
         int num;
+        int index=0;
 
         for(int i=0; i<amountOfRows; i++){
             num = rand.nextInt(listWithLinesFromFile.size());
-            System.out.println("1. The line number is " + num + ". Line: " + listWithLinesFromFile.get(num));
+            index=i+1;
+            System.out.println(index+". The line number is " + num + ". Line: " + listWithLinesFromFile.get(num));
         }
     }
 }

@@ -38,9 +38,9 @@ public class GratestCommonDivisor {
      */
     public static int gcd_1(int first, int second){
 
-        int rest=0;
-        first = unsigned(first);
-        second = unsigned(second);
+        int rest = 0;
+        first = Math.abs(first);
+        second = Math.abs(second);
         //если остаток от деления == 0, выходим из алгоритма
         if (second == 0)
             return first;
@@ -58,9 +58,9 @@ public class GratestCommonDivisor {
      */
     public static int gcd_2(int first, int second){
 
-        int rest=0;
-        first = unsigned(first);
-        second = unsigned(second);
+        int rest = 0;
+        first = Math.abs(first);
+        second = Math.abs(second);
         if (second == 0)
             return first;
 
@@ -77,9 +77,8 @@ public class GratestCommonDivisor {
      */
     public static int gcd_3(int first, int second){
 
-        int rest =0;
-        first = unsigned(first);
-        second = unsigned(second);
+        int rest = 0;
+
         if (second == 0)
             return first;
 
@@ -88,8 +87,4 @@ public class GratestCommonDivisor {
         return gcd_3(second, rest);
     }
 
-    public static int unsigned(int number){
-        if(number>0) return number;
-        else return number*(-1);
-    }
 }

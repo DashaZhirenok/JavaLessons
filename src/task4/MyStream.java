@@ -21,8 +21,7 @@ public class MyStream {
         String[] arrayWithWords = words.split(" ");
 
         Stream <String> streamWithWords = Stream.of(arrayWithWords);
-        streamWithWords.map(s -> s)
-                .forEach(System.out::println);
+        streamWithWords.forEach(System.out::println);
 
 
         /**
@@ -51,8 +50,7 @@ public class MyStream {
 
         Stream<String> streamWithIntegers = Stream.of(aIntegers);
         try {
-            streamWithIntegers.map(s -> s)
-                    .mapToInt(Integer::parseInt)
+            streamWithIntegers.mapToInt(Integer::parseInt)
                     .forEach(System.out::println);
         }
         catch (Exception e){
@@ -69,8 +67,7 @@ public class MyStream {
 
         Stream <String> streamWithDoubles = Stream.of(aDoubles);
         try {
-            streamWithDoubles.map(s -> s)
-                    .mapToDouble(Double::parseDouble)
+            streamWithDoubles.mapToDouble(Double::parseDouble)
                     .forEach(System.out::println);
         }
         catch (Exception e){

@@ -21,8 +21,11 @@ public class AmountOfSymbols {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Please, enter symbols or part of line");
 
+        String currentLine = reader.readLine();
         list = amountOfSymbols.listWithFiles(sPathOfDirectory);
-        System.out.println("The number of repetitions in all files: " + amountOfSymbols.myCountInFile(reader.readLine(), list));
+        System.out.println("The number of repetitions in all files: " + amountOfSymbols.myCountInFile(currentLine, list));
+        list = amountOfSymbols.listWithFiles(sPathOfFile);
+        System.out.println("The number of repetitions in current file: " + amountOfSymbols.myCountInFile(currentLine, list));
     }
 
     /**
