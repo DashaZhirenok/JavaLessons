@@ -1,4 +1,4 @@
-package task2_3;
+package task2;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,14 +20,6 @@ public class Rot13 {
         System.out.println("Введите строку для декодирования");
         String decodedLine = reader.readLine();
         System.out.println(rot13(decodedLine));
-
-        //перевод из 16-ричной в 10
-        try{
-            System.out.println(Integer.parseInt("478", 16));
-        }
-        catch (Exception e){
-            System.err.println(e);
-        }
 
     }
 
