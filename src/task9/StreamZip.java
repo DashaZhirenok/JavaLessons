@@ -1,63 +1,54 @@
 package task9;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Spliterator;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 /**
  * Created by Duska on 07.10.2017.
  */
 public class StreamZip {
     public static void main(String[] args) {
+        Stream<Integer> integers = IntStream.range(1, 9).boxed();
 
-        String[] arr = {"1", "3", "5"};
-        String[] arr2 = {"2", "4", "6"};
+        Stream<Integer> integers2 = IntStream.range(1, 9).boxed();
 
-        Stream<String> first = Stream.of(arr);
-        Stream<String> second = Stream.of(arr2);
+        Stream<String> zipStream = zip(integers, integers2);
+        zipStream.forEach(x -> System.out.println(x));
 
-        Stream<String> newStream = zip(first, second);
-
-        newStream.map(s->s.toString())
-                .forEach(System.out::println);
-    }
+    };
 
     /**
-     * create method that alternates elements from the streams first and second
      * @param first
      * @param second
-     * @param <T>
      * @return
      */
-    public static <T> Stream<T> zip(Stream<T> first, Stream<T> second){
-
-        List<T> newList = new ArrayList<>();
-
-        //getting elements from stream
-        List<T> listFirst = first
-                .collect(Collectors.toList());
-
-        List<T> listSecond = second
-                .collect(Collectors.toList());
-
-        int n = listFirst.size(), sizeOfList;
-        int n2 = listSecond.size();
-        if(n>n2) sizeOfList = n;
-
-        else sizeOfList = n2;
-
-        //filter, iterator streamConcat
-        //gitInit, rebase, fetch
-
-        //writing elements from two lists to one list
-        for(int i=0; i<sizeOfList; i++){
-            newList.add(listFirst.get(i));
-            newList.add(listSecond.get(i));
-        }
-
-        Stream<T> newStream = newList.stream();
-        return newStream;
-
+    public static Stream<String> zip(Stream<Integer> first, Stream<Integer> second){
+        Iterator<Integer> firstIt = first.iterator();
+        Iterator<Integer> secondIt = second.iterator();
+        Iterator<String> It = new Iterator<String>() {
+            boolean isFirst = true;
+            public boolean hasNext(){
+                if(isFirst) return firstIt.hasNext();
+                return secondIt.hasNext();
+            }
+            public String next(){
+                if (isFirst){
+                    isFirst = false;
+                    return String.valueOf(firstIt.next());
+                }
+                isFirst = true;
+                return String.valueOf(secondIt.next());
+            }
+        };
+        Iterable<String> iterable = ()-> It;
+        Spliterator<String> spliterator = iterable.spliterator();
+        return StreamSupport.stream(spliterator, false);
     }
+
 }
